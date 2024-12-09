@@ -1149,7 +1149,7 @@ a:hover, a:active {
   padding-right: 50px;
   padding-top: 22px;
   padding-bottom: 22px;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: #F3F3F3;
   border-radius: 50px;
   transition-property: background-color, padding-top, padding-bottom, transform;
   transition-duration: 0.5s;
@@ -1158,6 +1158,7 @@ a:hover, a:active {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  
 }
 .site-header:not(.dsn-open) {
   -webkit-backdrop-filter: blur(8px);
@@ -1298,6 +1299,7 @@ a:hover, a:active {
   opacity: 0;
   visibility: hidden;
   display: flex;
+  background-color: white;
 }
 @media only screen and (max-width: 991px) {
   .site-header.dsn-hamburger .main-navigation {
@@ -1347,7 +1349,7 @@ a:hover, a:active {
   }
 }
 .site-header.dsn-hamburger ul.primary-nav a, .site-header.dsn-hamburger ul.primary-nav ul a {
-  color: var(--font-color);
+  color: black;
   transform-origin: left top;
   transition: 500ms 0ms;
 }
@@ -1418,7 +1420,7 @@ a:hover, a:active {
 .site-header.dsn-hamburger #navbar_toggle .toggle-icon .toggle-line {
   position: relative;
   height: 2px;
-  background-color: var(--heading-color);
+  background-color: black;
   width: 25px;
   transition: 0.5s;
 }
@@ -1457,7 +1459,7 @@ a:hover, a:active {
   will-change: transform;
 }
 .site-header.dsn-hamburger #navbar_toggle .toggle-text .text-open .char, .site-header.dsn-hamburger #navbar_toggle .toggle-text .text-close .char, .site-header.dsn-hamburger #navbar_toggle .toggle-text .text-menu .char {
-  color: var(--heading-color);
+  color: black;
   will-change: transform;
   transition-property: opacity, visibility, transform;
   transition-duration: 0.5s;
@@ -1500,6 +1502,7 @@ a:hover, a:active {
   transition-property: opacity, transform;
   pointer-events: none;
 }
+
 @media only screen and (min-width: 992px) {
   .site-header.dsn-hamburger .menu-cover-title {
     left: -15px;
