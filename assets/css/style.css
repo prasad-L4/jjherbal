@@ -26,12 +26,12 @@
 	  - Next & Previous
     8. Content
       - pages
-      - Comments
+      - Commentsbackground-theme
       - Archives
       - Footer
     9.Forms
       - Button
-      - Fields
+      - Fieldsbackground-theme
     10.Blocks
     11.Media
       - captions
@@ -74,6 +74,26 @@
   --bg-btn: #0a0909;
 }
 
+.short {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Show only 2 lines */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  font-size: 14px!important;
+}
+
+.full {
+  overflow: visible;
+  -webkit-line-clamp: unset;
+}
+.blog-dis{
+  padding: 16px;
+
+}
+.box-content{
+  height: auto!important;
+}
 @media only screen and (max-width: 991px) {
   .v-dark-head-mobile {
     --bg-color: #111;
@@ -323,6 +343,7 @@ body:not(.dsn-cursor-effect) #dsn_cursor, body:not(.dsn-cursor-effect) #dsn_curs
   -webkit-user-select: none;
           user-select: none;
 }
+
 
 @keyframes moveIn {
   50%, 100% {
@@ -2291,9 +2312,10 @@ a:hover, a:active {
   overflow: hidden;
   white-space: normal;
 }
-.sub-heading{
-  color: #c2222b;
+.sub-heading,.section-title .sub-heading{
+  color: #c2222b!important;
 }
+
 /*--------------------------------------------------------------
 ## Header
 --------------------------------------------------------------*/
@@ -2399,6 +2421,10 @@ a:hover, a:active {
     flex-direction: column;
     grid-column-gap: 15px;
     grid-row-gap: 15px;
+  }
+  .box-content h1{
+    font-size: 48px!important;
+    margin-top: 4rem;
   }
   #dsn_header.header-normal .box-content .title {
     order: 2;
@@ -3232,13 +3258,55 @@ a:hover, a:active {
 }
 
 /* -------------------------------------------------------
-                   portfolio
+               blogs
 -------------------------------------------------------- */
+.blog-dis .text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Show only 2 lines of text */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.blog-dis .expanded-text {
+    display: block; /* Shows the full text when the button is clicked */
+}
+
+
+
+
+.blog-dis .text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Show only 2 lines of text */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-dis .expanded-text {
+  display: block; /* Shows the full text when the button is clicked */
+}
+
+
+.blog-dis button{
+  color: #c2222b;
+}
+.blog-main{
+  display: flex;
+}
+.blog-card{
+  width: 60rem!important;
+  max-width: 30rem;
+  height: 40rem;
+  background-color: #171717;
+  border-radius: 30px;
+}
+.blog-img{
+  border-radius:30px 30px 0px 0px;
+}
 .dsn-posts .h-350 {
-  height: 350px;
+  height:auto;
 }
 .dsn-cards .dsn-posts .dsn-item-post .box-image-bg.h-350 {
-  height: 350px;
+  height: auto;
 }
 .work-scroll .dsn-posts .dsn-item-post {
   border-radius: 15px;

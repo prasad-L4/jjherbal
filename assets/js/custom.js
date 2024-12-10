@@ -1536,4 +1536,30 @@ const dsnParam = {
 function sidebarOptions() {
   document.body.classList.toggle('dsn-show-sidebar');
 }
+
+// blog section see more btn
+
+const toggleButtons = document.querySelectorAll('.toggleBtn');
+
+
+toggleButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const textElement = this.previousElementSibling; 
+        
+       
+        textElement.classList.toggle('expanded-text');
+        
+    
+        if (textElement.classList.contains('expanded-text')) {
+            this.textContent = 'See Less';
+        } else {
+            this.textContent = 'See More';
+        }
+    });
+});
+
+
+
+
+
 //# sourceMappingURL=custom.js.map
