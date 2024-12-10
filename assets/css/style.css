@@ -2278,7 +2278,22 @@ a:hover, a:active {
 .dsn-swiper .cover-bg-img {
   height: 100%;
 }
-
+.cover-bg-img{
+  object-fit: cover;
+  object-position: top;
+}
+.post-title a{
+  font-size: 17px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: normal;
+}
+.sub-heading{
+  color: #c2222b;
+}
 /*--------------------------------------------------------------
 ## Header
 --------------------------------------------------------------*/
@@ -4309,7 +4324,7 @@ body.error404 .sm-title-block span {
   position: relative;
 }
 .footer .logo-wrap {
-  background-color: var(--bg-color);
+  background-color: white;
   border-bottom-right-radius: 50%;
   border-bottom-left-radius: 50%;
   display: flex;
@@ -5803,7 +5818,8 @@ ul.intro-project-list li h5.title-list-project + p.description-list-project {
 }
 
 .v-dark .brand-item img {
-  filter: invert(1);
+
+ border-radius: 30px;
 }
 
 @media only screen and (max-width: 991px) {
