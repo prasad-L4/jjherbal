@@ -1539,24 +1539,36 @@ function sidebarOptions() {
 
 // blog section see more btn
 
-const toggleButtons = document.querySelectorAll('.toggleBtn');
-
-
-toggleButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const textElement = this.previousElementSibling; 
-        
+function initializeToggleButtons() {
+  const toggleButtons = document.querySelectorAll('.toggleBtn');
+  
+  toggleButtons.forEach(button => {
+      button.addEventListener('click', function() {
+          const textElement = this.previousElementSibling; 
+          
        
-        textElement.classList.toggle('expanded-text');
-        
-    
-        if (textElement.classList.contains('expanded-text')) {
-            this.textContent = 'See Less';
-        } else {
-            this.textContent = 'See More';
-        }
-    });
-});
+          textElement.classList.toggle('expanded-text');
+          
+         
+          if (textElement.classList.contains('expanded-text')) {
+              this.textContent = 'See Less';
+          } else {
+              this.textContent = 'See More';
+          }
+      });
+  });
+}
+
+
+document.addEventListener('DOMContentLoaded', initializeToggleButtons);
+
+if (typeof somePageNavigationEvent === 'function') {
+  somePageNavigationEvent(() => {
+      initializeToggleButtons();
+  });
+}
+
+
 
 
 
