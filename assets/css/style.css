@@ -3270,6 +3270,25 @@ margin-top: -2rem;
 /* -------------------------------------------------------
                blogs
 -------------------------------------------------------- */
+.blg-title{
+  font-size: 3rem!important;
+}
+.blg-dtl-img{
+  border-radius: 30px;
+  width: 100%;
+  
+}
+.blg-date{
+  font-size: 5rem;
+
+}
+.blg-dtls-titles{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
 .blog-dis .text {
     display: -webkit-box;
     -webkit-line-clamp: 2; /* Show only 2 lines of text */
@@ -3396,6 +3415,15 @@ margin-top: -2rem;
   .dsn-style-list .dsn-posts .box-content .box-image-link + .post-content {
     padding-top: 30px;
   }
+  .blg-dtls-titles{
+    display: flex;
+    justify-content: center ;
+    align-items: center!important;
+    text-align: center;
+  }
+  .blg-date{
+    margin-top: rem;
+  }
 }
 .dsn-style-list .dsn-posts .dsn-item-post:not(:last-of-type) {
   border-bottom: 1px solid var(--border-color);
@@ -3432,6 +3460,9 @@ margin-top: -2rem;
   bottom: 0;
   right: 15px;
 }
+.blg-date{
+  font-size: 1rem!important;
+}
 @media only screen and (min-width: 992px) {
   .dsn-style-list .dsn-posts .box-content {
     grid-column-gap: 0 !important;
@@ -3456,6 +3487,10 @@ margin-top: -2rem;
 @media only screen and (max-width: 991px) {
   .dsn-style-list.dsn-image-odd .dsn-posts .dsn-item-post .box-image-link {
     order: 0 !important;
+  }
+  .blg-date{
+    font-size: 1rem
+    !important;
   }
 }
 
@@ -3501,11 +3536,23 @@ margin-top: -2rem;
 .filtering-t .filtering-wrap .filtering button.active {
   color: var(--theme-color);
 }
+.blg-dtls-titles{
+  display: flex;
+
+  
+}
+
 @media only screen and (max-width: 575px) {
   .filtering-t .filtering-wrap .filtering button {
     padding-top: 0;
     padding-bottom: 10px;
     margin: 0 10px 10px 0;
+  }
+  .blg-date{
+    margin-top: 0rem;
+  }
+  .dtl-blog-dis{
+    width: 100%;
   }
 }
 
