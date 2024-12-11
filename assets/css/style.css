@@ -1188,7 +1188,7 @@ a:hover, a:active {
   
 }
 .nav-btns{
-  color: white;
+  color: #c2222b;
 }
 .site-header:not(.dsn-open) {
   -webkit-backdrop-filter: blur(8px);
@@ -1451,7 +1451,7 @@ margin-top: -2rem;
 .site-header.dsn-hamburger #navbar_toggle .toggle-icon .toggle-line {
   position: relative;
   height: 2px;
-  background-color: white;
+  background-color: #c2222b;
   width: 25px;
   transition: 0.5s;
 }
@@ -1490,7 +1490,7 @@ margin-top: -2rem;
   will-change: transform;
 }
 .site-header.dsn-hamburger #navbar_toggle .toggle-text .text-open .char, .site-header.dsn-hamburger #navbar_toggle .toggle-text .text-close .char, .site-header.dsn-hamburger #navbar_toggle .toggle-text .text-menu .char {
-  color: white;
+  color: #c2222b;
   will-change: transform;
   transition-property: opacity, visibility, transform;
   transition-duration: 0.5s;
