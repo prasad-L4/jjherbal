@@ -1450,6 +1450,7 @@ const dsnParam = {
     });
   }
 
+
   function list_project($el = $(document)) {
     function changeState(_active, _remove, $product) {
       if (_active.hasClass('active')) return false;
@@ -1529,8 +1530,60 @@ const dsnParam = {
         });
         return false;
       }
+      
     });
+    
   }
+
+  function contactValidator() {
+    const contact_form = $("#contact-form");
+
+    if (contact_form < 1) {
+      return;
+    }
+
+    contact_form.validator(); // when the form is submitted
+    // contact_form.off("submit");
+
+    contact_form.on("submit", function (e) {
+      // if the validator does not prevent form submit
+      if (!e.isDefaultPrevented()) {
+        // POST values in the background the the script URL
+        $.ajax({
+          type: "POST",
+          url: "contact.php",
+          data: $(this).serialize(),
+          success: function (data) {
+            // data = JSON object that contact.php returns
+            // we recieve the type of the message: success x danger and apply it to the
+            var messageAlert = "alert-" + data.type;
+            var messageText = data.message; // let's compose Bootstrap alert box HTML
+
+            var alertBox = "<div class=\"alert " + messageAlert + " alert-dismissable\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>" + messageText + "</div>"; // If we have messageAlert and messageText
+
+            if (messageAlert && messageText) {
+              // inject the alert to .messages div in our form
+              contact_form.find(".messages").html(alertBox); // empty the form
+
+              contact_form[0].reset();
+            }
+
+            setTimeout(function () {
+              contact_form.find(".messages").html("");
+            }, 3000);
+          },
+          error: function (error) {
+            console.log(error);
+          }
+        });
+        return false;
+      }
+      
+    });
+    
+  }
+
+  
 })(jQuery);
 
 function sidebarOptions() {
@@ -1567,6 +1620,66 @@ if (typeof somePageNavigationEvent === 'function') {
       initializeToggleButtons();
   });
 }
+
+function initializeScrollHandler() {
+  const container = document.querySelector('.hlth-container');
+  if (container) {
+    container.removeEventListener('wheel', handleWheelEvent); // Prevent duplicate listeners
+    container.addEventListener('wheel', handleWheelEvent, { passive: false });
+  }
+}
+
+function handleWheelEvent(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const container = e.currentTarget;
+
+  // Get the scroll delta (how much the user is scrolling)
+  let scrollDelta = e.deltaY || e.detail || e.wheelDelta;
+
+  // Get the current scroll position and the max scroll position
+  let currentScroll = container.scrollTop;
+  let maxScroll = container.scrollHeight - container.clientHeight;
+
+  if (scrollDelta > 0) {
+    // Scrolling down
+    if (currentScroll < maxScroll) {
+      container.scrollTop += scrollDelta;
+    } else {
+      let nextSection = document.querySelector('.next-section');
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  } else if (scrollDelta < 0) {
+    // Scrolling up
+    if (currentScroll > 0) {
+      container.scrollTop += scrollDelta;
+    } else {
+      let prevSection = document.querySelector('.prev-section');
+      if (prevSection) {
+        prevSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
+}
+
+// Observe changes to the DOM and reinitialize the scroll handler
+const observer = new MutationObserver(() => {
+  initializeScrollHandler();
+});
+
+// Start observing the document for changes
+observer.observe(document.body, { childList: true, subtree: true });
+
+// Initialize the scroll handler initially
+initializeScrollHandler();
+
+
+
+
+
 
 
 
