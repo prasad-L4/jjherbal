@@ -7100,6 +7100,16 @@ ul.intro-project-list li h5.title-list-project + p.description-list-project {
   .about-me .about-inner .background-decoration, .about-me .about-inner .bg-pattarn {
     display: none;
   }
+  .contact-sec,.contact-sec div h1,.blog-sec div h1{
+    display: flex;
+    justify-content: center!important;
+    align-items: center!important;
+    text-align: center;
+  }
+  .blog-sec div div{
+   min-width: 100%!important;
+
+  }
 }
 @media only screen and (min-width: 576px) {
   .about-me .box-img img {

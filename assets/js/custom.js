@@ -16,7 +16,7 @@ const dsnParam = {
     smoothTouch: false,
     mouseMultiplier: 1
   },
-  name: "EXFOLIO"
+  name: "SEXUAL STAMINA"
 };
 
 (function ($) {
@@ -1678,7 +1678,30 @@ initializeScrollHandler();
 
 
 
+function sendMessage(event) {
+  event.preventDefault(); // Prevent form submission
 
+  // Get form values
+  const name = document.getElementById('form_name').value.trim();
+  const email = document.getElementById('form_email').value.trim();
+  const message = document.getElementById('form_message').value.trim();
+
+  // Check if inputs are valid
+  if (!name || !email || !message) {
+      alert('Please fill out all fields.');
+      return;
+  }
+
+  // Format the WhatsApp message
+  const whatsappNumber = '919946410788'; 
+  const whatsappMessage = `Hello, my name is ${name}.
+Email: ${email}
+Message: ${message}`;
+
+  // Redirect to WhatsApp chat
+  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  window.open(whatsappURL, '_blank');
+}
 
 
 
