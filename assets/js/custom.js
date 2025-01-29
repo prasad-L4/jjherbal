@@ -1621,60 +1621,7 @@ if (typeof somePageNavigationEvent === 'function') {
   });
 }
 
-function initializeScrollHandler() {
-  const container = document.querySelector('.hlth-container');
-  if (container) {
-    container.removeEventListener('wheel', handleWheelEvent); // Prevent duplicate listeners
-    container.addEventListener('wheel', handleWheelEvent, { passive: false });
-  }
-}
 
-function handleWheelEvent(e) {
-  e.preventDefault();
-  e.stopPropagation();
-
-  const container = e.currentTarget;
-
-  // Get the scroll delta (how much the user is scrolling)
-  let scrollDelta = e.deltaY || e.detail || e.wheelDelta;
-
-  // Get the current scroll position and the max scroll position
-  let currentScroll = container.scrollTop;
-  let maxScroll = container.scrollHeight - container.clientHeight;
-
-  if (scrollDelta > 0) {
-    // Scrolling down
-    if (currentScroll < maxScroll) {
-      container.scrollTop += scrollDelta;
-    } else {
-      let nextSection = document.querySelector('.next-section');
-      if (nextSection) {
-        nextSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  } else if (scrollDelta < 0) {
-    // Scrolling up
-    if (currentScroll > 0) {
-      container.scrollTop += scrollDelta;
-    } else {
-      let prevSection = document.querySelector('.prev-section');
-      if (prevSection) {
-        prevSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  }
-}
-
-// Observe changes to the DOM and reinitialize the scroll handler
-const observer = new MutationObserver(() => {
-  initializeScrollHandler();
-});
-
-// Start observing the document for changes
-observer.observe(document.body, { childList: true, subtree: true });
-
-// Initialize the scroll handler initially
-initializeScrollHandler();
 
 
 
@@ -1703,7 +1650,24 @@ Message: ${message}`;
   window.open(whatsappURL, '_blank');
 }
 
+let lastScrollTop = 0;
+const topHeader = document.querySelector(".top-header");
 
+if (topHeader) {
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > lastScrollTop) {
+      // Scrolling down
+      topHeader.style.transform = "translateY(-100%)";
+    } else {
+      // Scrolling up
+      topHeader.style.transform = "translateY(0)";
+    }
+
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For mobile or at the top of the page
+  });
+}
 
 
 
