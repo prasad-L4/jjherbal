@@ -670,6 +670,92 @@ const dsnParam = {
       targets.subMenu.off('click', handleClickSubMenu);
       targets.back.off('click', handleClickBackMenu);
     });
+
+
+
+    $(document).ready(function() {
+      // Initialize the slider function
+      function initializeSlider() {
+        const $sliderWrapper = $('.slider-wrapper');
+        const $leftBtn = $('.arrow-btn.left');
+        const $rightBtn = $('.arrow-btn.right');
+    
+        if ($sliderWrapper.length === 0 || $leftBtn.length === 0 || $rightBtn.length === 0) {
+          console.log('Slider elements not found');
+          return;
+        }
+    
+        let currentIndex = 0;
+        const totalCards = $sliderWrapper.children().length;
+    
+        // Recalculate card width
+        let cardWidth = $sliderWrapper.children().first().outerWidth(true); // Include margin
+    
+        // Update the slider position
+        function updateSlider() {
+          cardWidth = $sliderWrapper.children().first().outerWidth(true); // Recalculate on resize
+          const translateX = -currentIndex * cardWidth;
+          $sliderWrapper.css({
+            'transition': 'transform 0.5s ease-in-out',
+            'transform': `translateX(${translateX}px)`
+          });
+        }
+    
+        // Event listeners for navigation
+        $leftBtn.on('click', function() {
+          currentIndex = currentIndex > 0 ? currentIndex - 1 : totalCards - 1;
+          updateSlider();
+        });
+    
+        $rightBtn.on('click', function() {
+          currentIndex = currentIndex < totalCards - 1 ? currentIndex + 1 : 0;
+          updateSlider();
+        });
+    
+        // Update the slider on resize
+        $(window).on('resize', updateSlider);
+    
+        // Initialize the slider
+        updateSlider();
+    
+        // Automatic slider transition every 3 seconds
+        setInterval(function() {
+          currentIndex = currentIndex < totalCards - 1 ? currentIndex + 1 : 0;
+          updateSlider();
+        }, 3000); // 3 seconds
+    
+        // Reset slider when page is shown or refreshed
+        $(window).on('pageshow', function(event) {
+          if (event.originalEvent.persisted || document.visibilityState === 'visible') {
+            console.log('Page shown or refreshed, reinitializing slider');
+            currentIndex = 0; // Reset slider to the first card
+            updateSlider();
+          }
+        });
+    
+        // Reset slider when the page is focused or made visible again
+        $(document).on('visibilitychange', function() {
+          if (document.visibilityState === 'visible') {
+            console.log('Page is visible again, refreshing slider');
+            currentIndex = 0; // Reset to first slide
+            updateSlider();
+          }
+        });
+      }
+    
+      // Run initialization when the DOM is ready
+      setTimeout(initializeSlider, 100); // Slight delay to allow DOM elements to load properly
+    
+      // Reinitialize slider when navigating back to the page (especially for SPA or cache)
+      $(window).on('pageshow', function(event) {
+        if (event.originalEvent.persisted) {
+          console.log("Page loaded from cache, reinitializing slider");
+          initializeSlider(); // Reinitialize slider on page show from cache
+        }
+      });
+    });
+    
+
   }
 
   function dropHash() {
